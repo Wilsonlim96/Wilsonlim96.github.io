@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Let's Play Connect-4!</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="connect4.css" />
+    <script src="./connect4-pregame.js"></script>
+  </head>
+  <body>
+    <h1>CONNECT-4</h1>
+
+    <!-- Buttons to open the form -->
+    <div>
+      <button id="single-player-button" onclick="closeForm()">
+        SINGLE PLAYER
+      </button>
+    </div>
+    <div>
+      <button id="multiplayer-button" onclick="openForm()">MULTIPLAYER</button>
+    </div>
+
+    <!-- The form -->
+    <div id="MultiplayerForm">
+      <form action="./connect4-gameplay.html" class="form-container">
+        <h1>MULTIPLAYER</h1>
+
+        <label for="player1-name"><b>Player 1</b></label>
+        <input
+          type="text"
+          placeholder="Enter Player 1 Name"
+          id="player1-name"
+          required
+        />
+
+        <label for="player2-name"><b>Player 2</b></label>
+        <input
+          type="text"
+          placeholder="Enter Player 2 Name"
+          id="player2-name"
+          required
+        />
+
+        <button type="submit" class="btn">Start Game</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">
+          Back
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
