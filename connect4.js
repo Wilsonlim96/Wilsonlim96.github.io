@@ -119,7 +119,6 @@ function checkWinDraw() {
     }
 
     // Check horizontal win
-    // code
     for (let r = 1; r <= boardRows; r++) {
       for (let c = 1; c <= boardCols - 3; c++) {
         let tile = game[c - 1][r - 1];
@@ -150,7 +149,34 @@ function checkWinDraw() {
     }
 
     // Check diagonal win
-    // code
+    for (let r = 1; r <= boardRows - 3; r++) {
+      for (let c = 1; c <= boardCols - 3; c++) {
+        let tile = game[c - 1][r - 1];
+        let tile_diag = game[c][r];
+        let tile_diag2 = game[c + 1][r + 1];
+        let tile_diag3 = game[c + 2][r + 2];
+        if (tile != " ") {
+          if (
+            tile == tile_diag &&
+            tile_diag == tile_diag2 &&
+            tile_diag2 == tile_diag3
+          ) {
+            winner = tile;
+            gameEnd = true;
+
+            // Updated scoreboard
+            if (winner == player1) {
+              player1_score++;
+            } else {
+              player2_score++;
+            }
+            alert(`${winner} wins`);
+            console.log(player1_score, player2_score);
+            // newGame();
+          }
+        }
+      }
+    }
   }, 1);
 }
 
