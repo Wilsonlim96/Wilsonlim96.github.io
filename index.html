@@ -34,21 +34,23 @@
 
         <label for="player1-name"><b>Player 1</b></label>
         <input
+          id="player1-name"
           type="text"
           placeholder="Enter Player 1 Name"
-          id="player1-name"
           required
         />
 
         <label for="player2-name"><b>Player 2</b></label>
         <input
+          id="player2-name"
           type="text"
           placeholder="Enter Player 2 Name"
-          id="player2-name"
           required
         />
 
-        <button type="submit" class="btn">Start Game</button>
+        <button type="submit" class="btn" onclick="storeinput()">
+          Start Game
+        </button>
         <button type="button" class="btn cancel" onclick="closeForm()">
           Back
         </button>

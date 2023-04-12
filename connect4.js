@@ -1,8 +1,8 @@
 import scoreboard from "./scoreboard.js";
 
 // Setting up Game
-let player1 = "Wilson"; // take input from form //
-let player2 = "Lindi"; // take input from form //
+let player1 = localStorage.getItem("player1-name"); // take input from form //
+let player2 = localStorage.getItem("player2-name"); // take input from form //
 let player1_score = 0;
 let player2_score = 0;
 let starting_player = player1;
@@ -211,6 +211,22 @@ function checkWinDraw() {
           }
         }
       }
+    }
+
+    // Checking for draw
+    let tile_counter = 0;
+    for (let r = 1; r <= boardRows; r++) {
+      for (let c = 1; c <= boardCols; c++) {
+        let tile = game[c - 1][r - 1];
+        if (tile != " ") {
+          tile_counter++;
+        }
+      }
+    }
+    if (tile_counter == boardCols * boardRows) {
+      gameEnd = true;
+      alert("Draw Game! Please start a new game.");
+      newGame();
     }
   }, 200);
 }
