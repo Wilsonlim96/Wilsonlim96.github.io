@@ -18,12 +18,18 @@ var winner;
 var player;
 var rowTracker;
 
+// Setting up Scoreboard
+const root = $("#score")[0];
+const score = new scoreboard(root, player1, player2);
+
 // New Game
 newGame();
 
 function newGame() {
   const board = $("#board");
   const turn = $("#turn");
+
+  // Switch Starting Player after game ended
   if (gameEnd == true) {
     gameEnd = false;
     for (let c = 1; c <= boardCols; c++) {
@@ -36,6 +42,8 @@ function newGame() {
     }
     turn[0].innerHTML = "";
   }
+
+  // Game Set-up
   game = [];
   for (let c = 1; c <= boardCols; c++) {
     let col = [];
@@ -102,8 +110,6 @@ function playTile(e) {
   }
 }
 
-function undo(e) {}
-
 // Check for winner or draw game
 function checkWinDraw() {
   setTimeout(() => {
@@ -121,17 +127,7 @@ function checkWinDraw() {
             tile_down2 == tile_down3
           ) {
             winner = tile;
-            gameEnd = true;
-
-            // Updated scoreboard
-            if (winner == player1) {
-              player1_score++;
-            } else {
-              player2_score++;
-            }
-            alert(`${winner} win!`);
-            console.log(player1_score, player2_score);
-            newGame();
+            updateScore(winner);
           }
         }
       }
@@ -151,17 +147,7 @@ function checkWinDraw() {
             tile_right2 == tile_right3
           ) {
             winner = tile;
-            gameEnd = true;
-
-            // Updated scoreboard
-            if (winner == player1) {
-              player1_score++;
-            } else {
-              player2_score++;
-            }
-            alert(`${winner} win!`);
-            console.log(player1_score, player2_score);
-            newGame();
+            updateScore(winner);
           }
         }
       }
@@ -181,17 +167,7 @@ function checkWinDraw() {
             tile_diag2 == tile_diag3
           ) {
             winner = tile;
-            gameEnd = true;
-
-            // Updated scoreboard
-            if (winner == player1) {
-              player1_score++;
-            } else {
-              player2_score++;
-            }
-            alert(`${winner} win!`);
-            console.log(player1_score, player2_score);
-            newGame();
+            updateScore(winner);
           }
         }
       }
@@ -210,17 +186,7 @@ function checkWinDraw() {
             tile_diag2 == tile_diag3
           ) {
             winner = tile;
-            gameEnd = true;
-
-            // Updated scoreboard
-            if (winner == player1) {
-              player1_score++;
-            } else {
-              player2_score++;
-            }
-            alert(`${winner} win!`);
-            console.log(player1_score, player2_score);
-            newGame();
+            updateScore(winner);
           }
         }
       }
@@ -244,6 +210,19 @@ function checkWinDraw() {
   }, 200);
 }
 
-// Scoreboard
-const root = document.querySelector("#score");
-const score = new scoreboard(root, player1, player2);
+// Updating Scoreboard
+function updateScore(winner) {
+  if (winner == player1) {
+    player1_score++;
+  } else {
+    player2_score++;
+  }
+  alert(`${winner} win!`);
+  $("#P1_score")[0].innerHTML = player1_score;
+  $("#P2_score")[0].innerHTML = player2_score;
+  gameEnd = true;
+  newGame();
+}
+
+// Undo-ing last move
+function undo(e) {}

@@ -1,5 +1,5 @@
 export default class scoreboard {
-  constructor(root, player1, player2, scoreboardChange) {
+  constructor(root, player1, player2) {
     this.root = root;
     this.root.innerHTML = `
       <h2 id="scoreboard">
