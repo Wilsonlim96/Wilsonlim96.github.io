@@ -1,6 +1,6 @@
 import scoreboard from "./scoreboard.js";
 
-// Setting up Game
+// Setting up the Game
 
 let player1 = localStorage.getItem("player1-name"); // take input from form //
 let player2 = localStorage.getItem("player2-name"); // take input from form //
@@ -22,7 +22,7 @@ var rowTracker;
 const root = $("#score")[0];
 const score = new scoreboard(root, player1, player2);
 
-// New Game
+// Starting a New Game
 newGame();
 
 function newGame() {
@@ -224,5 +224,13 @@ function updateScore(winner) {
   newGame();
 }
 
-// Undo-ing last move
+// Undo last move
+window.undo = undo;
 function undo(e) {}
+
+// Back to Main Menu
+window.mainMenu = mainMenu;
+
+function mainMenu() {
+  window.location.href = "./index.html";
+}

@@ -65,6 +65,17 @@ h2 {
 .yellowtile {
   background-color: yellow;
 }
+
+#action {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.action-buttons {
+  width: 30%;
+}
+
 /* -----------------------------  PRE-GAME FORM  ----------------------------- */
 
 /* Buttons used to start the different game modes */
