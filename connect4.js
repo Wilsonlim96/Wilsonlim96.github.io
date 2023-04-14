@@ -1,6 +1,7 @@
 import scoreboard from "./scoreboard.js";
 
 // Setting up Game
+
 let player1 = localStorage.getItem("player1-name"); // take input from form //
 let player2 = localStorage.getItem("player2-name"); // take input from form //
 let player1_score = 0;
@@ -49,7 +50,11 @@ function newGame() {
     game.push(col);
   }
   player = starting_player;
-  turn.append(`${player}'s Turn`);
+  if (player == "You") {
+    turn.append(`${player}r Turn`);
+  } else {
+    turn.append(`${player}'s Turn`);
+  }
   rowTracker = [7, 7, 7, 7, 7, 7, 7];
 }
 
@@ -76,12 +81,20 @@ function playTile(e) {
       tile.classList.add("redtile");
       player = player2;
       turn[0].innerHTML = "";
-      turn.append(`${player2}'s Turn`);
+      if (player == "You") {
+        turn.append(`${player}r Turn`);
+      } else {
+        turn.append(`${player}'s Turn`);
+      }
     } else if (row >= 1 && player == player2) {
       tile.classList.add("yellowtile");
       player = player1;
       turn[0].innerHTML = "";
-      turn.append(`${player1}'s Turn`);
+      if (player == "You") {
+        turn.append(`${player}r Turn`);
+      } else {
+        turn.append(`${player}'s Turn`);
+      }
     } else {
       alert("The column is full. You cannot add more tiles.");
     }
@@ -116,7 +129,7 @@ function checkWinDraw() {
             } else {
               player2_score++;
             }
-            alert(`${winner} wins`);
+            alert(`${winner} win!`);
             console.log(player1_score, player2_score);
             newGame();
           }
@@ -146,7 +159,7 @@ function checkWinDraw() {
             } else {
               player2_score++;
             }
-            alert(`${winner} wins`);
+            alert(`${winner} win!`);
             console.log(player1_score, player2_score);
             newGame();
           }
@@ -176,7 +189,7 @@ function checkWinDraw() {
             } else {
               player2_score++;
             }
-            alert(`${winner} wins`);
+            alert(`${winner} win!`);
             console.log(player1_score, player2_score);
             newGame();
           }
@@ -205,7 +218,7 @@ function checkWinDraw() {
             } else {
               player2_score++;
             }
-            alert(`${winner} wins`);
+            alert(`${winner} win!`);
             console.log(player1_score, player2_score);
             newGame();
           }

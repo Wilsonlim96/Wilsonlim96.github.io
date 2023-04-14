@@ -1,8 +1,22 @@
-// For POP-UP form
-// window.openForm = openForm;
-// window.closeForm = closeForm;
-// window.showinput = showinput;
+// Setting Single Player Mode
 
+function singlePlayer() {
+  window.location.href = "./single-player.html";
+}
+
+function SetPlayer1() {
+  window.location.href = "./connect4-gameplay.html";
+  localStorage.setItem("player1-name", "You");
+  localStorage.setItem("player2-name", "AI");
+}
+
+function SetPlayer2() {
+  window.location.href = "./connect4-gameplay.html";
+  localStorage.setItem("player1-name", "AI");
+  localStorage.setItem("player2-name", "You");
+}
+
+// Multiplayer Mode - POP-UP form
 function openForm() {
   const multiplayerForm = $("#MultiplayerForm")[0];
   multiplayerForm.style.display = "block";
