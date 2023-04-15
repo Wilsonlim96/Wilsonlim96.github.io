@@ -16,6 +16,10 @@ function SetPlayer2() {
   localStorage.setItem("player2-name", "You");
 }
 
+function mainMenu() {
+  window.location.href = "./index.html";
+}
+
 // Multiplayer Mode - POP-UP form
 function openForm() {
   const multiplayerForm = $("#MultiplayerForm")[0];

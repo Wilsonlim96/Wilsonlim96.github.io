@@ -4,32 +4,33 @@ body {
   text-align: center;
   place-items: center;
 }
+
 h2 {
-  margin-bottom: 20px;
+  font-size: 1.5em;
 }
 
 #scoreboard {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 300px;
+  width: 100%;
   margin: 0px;
 }
 
 .scoreboard_name {
   padding: 10px;
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 1.5em;
   border-bottom: 5px solid #ddd;
 }
 
 #P1_score {
-  padding: 10px;
-  font-size: 1.7em;
+  padding: 5px;
+  font-size: 1.5em;
 }
 
 #P2_score {
-  padding: 10px;
-  font-size: 1.7em;
+  padding: 5px;
+  font-size: 1.5em;
 }
 
 #board {
@@ -50,8 +51,8 @@ h2 {
 }
 
 .tile {
-  height: 80px;
-  width: 80px;
+  height: 75px;
+  width: 75px;
   margin: 5px;
   background-color: white;
   border-radius: 50%;
@@ -67,35 +68,43 @@ h2 {
 }
 
 #action {
-  width: 50%;
+  width: 450px;
   display: flex;
   justify-content: space-evenly;
 }
 
 .action-buttons {
-  width: 30%;
+  font-size: 1.3em;
+  width: 35%;
+  padding: 3%;
+  margin-top: 5%;
 }
 
 /* -----------------------------  PRE-GAME FORM  ----------------------------- */
 
 /* Buttons used to start the different game modes */
 #single-player-button {
-  margin-top: 90px;
+  margin-top: 23%;
 }
 
 #player1-button {
-  margin-top: 40px;
+  margin-top: 20%;
+  background-color: red;
+}
+
+#player2-button {
+  background-color: darkkhaki;
 }
 
 button {
   background-color: grey;
   font-size: 1.3em;
   color: white;
-  padding: 20px;
+  padding: 8%;
   border: none;
   cursor: pointer;
-  width: 300px;
-  margin-top: 10px;
+  width: 250px;
+  margin-top: 5%;
   opacity: 0.8;
 }
 
@@ -103,15 +112,15 @@ button {
 #MultiplayerForm {
   display: none;
   position: fixed;
-  top: 10%;
-  border: 3px solid #f1f1f1;
+  top: 8%;
+  border: 3px solid #807a7a;
   z-index: 9;
 }
 
 /* Add styles to the form container */
 .form-container {
-  max-width: 300px;
-  padding: 20px;
+  max-width: 400px;
+  padding: 5%;
   background-color: white;
 }
 
@@ -133,6 +142,14 @@ button {
   opacity: 1;
 }
 
+label {
+  font-size: 1.2em;
+}
+
+input {
+  font-size: 1.2em;
+}
+
 /* Set a style for the submit/login button */
 .form-container .btn {
   background-color: darkgreen;
@@ -147,7 +164,7 @@ button {
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: darkgrey;
+  background-color: rgb(47, 46, 46);
 }
 
 /* Add some hover effects to buttons */
@@ -155,4 +172,125 @@ button {
 #single-player-button:hover,
 #multiplayer-button:hover {
   opacity: 1;
+}
+
+/* Media Query - Mobile Responsive */
+@media (max-width: 700px) {
+  .tile {
+    width: 50px;
+    height: 50px;
+    border: 3.5px solid black;
+    margin: 3.5px;
+  }
+
+  #board {
+    border: 3.5px solid black;
+  }
+
+  .action-buttons {
+    font-size: 1.3em;
+    width: 35%;
+    padding: 3%;
+    margin-top: 5%;
+  }
+
+  h2,
+  .scoreboard_name,
+  #P1_score,
+  #P2_score {
+    font-size: 1.2em;
+  }
+
+  #action {
+    width: 60%;
+  }
+
+  .action-buttons {
+    font-size: 1em;
+    width: 40%;
+  }
+
+  #MultiplayerForm {
+    top: 10%;
+  }
+}
+
+@media (max-width: 520px) {
+  .tile {
+    width: 40px;
+    height: 40px;
+    border: 3px solid black;
+    margin: 3px;
+  }
+
+  #board {
+    border: 3px solid black;
+  }
+
+  h2,
+  .scoreboard_name,
+  #P1_score,
+  #P2_score {
+    font-size: 1.2em;
+  }
+
+  .action-buttons {
+    font-size: 0.9em;
+    width: 40%;
+  }
+
+  .form-container {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 420px) {
+  .tile {
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+    margin: 2px;
+  }
+
+  #board {
+    border: 2px solid black;
+  }
+
+  h2,
+  .scoreboard_name,
+  #P1_score,
+  #P2_score {
+    font-size: 1.1em;
+  }
+
+  .action-buttons {
+    font-size: 0.8em;
+    width: 40%;
+  }
+}
+
+@media (max-width: 300px) {
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .form-container {
+    max-width: 250px;
+  }
+
+  label {
+    font-size: 1em;
+  }
+
+  input {
+    font-size: 1em;
+  }
+
+  #action {
+    width: 70%;
+  }
+
+  .action-buttons {
+    font-size: 0.7em;
+  }
 }
