@@ -13,7 +13,7 @@ let gameEnd = false;
 const boardRows = 7;
 const boardCols = 7;
 var game;
-var currentTile;
+var moves;
 var winner;
 var player;
 var rowTracker;
@@ -45,6 +45,7 @@ function newGame() {
 
   // Game Set-up
   game = [];
+  moves = [];
   for (let c = 1; c <= boardCols; c++) {
     let col = [];
     board.append(`<ul id="c${c}" class="column" onclick='playTile(this.id)' >`);
@@ -68,45 +69,43 @@ function newGame() {
 
 // Playing a Tile
 window.playTile = playTile;
-window.undo = undo;
 
 function playTile(e) {
   if (gameEnd) {
     alert("The game is over. Please start a new game."); // add alert to show who is the winner
   } else {
     // Update game board status
-
     const col = parseInt(e.slice(1));
     const row = rowTracker[col - 1];
     game[col - 1][row - 1] = player;
-    currentTile = $(`#${e}r${row}`)[0];
-    const tile = currentTile;
+    moves.push([col, row]);
+    const tile = $(`#${e}r${row}`)[0];
     rowTracker[col - 1]--;
 
     // Changing player's turn
-    const turn = $("#turn");
     if (row >= 1 && player == player1) {
-      tile.classList.add("redtile");
-      player = player2;
-      turn[0].innerHTML = "";
-      if (player == "You") {
-        turn.append(`${player}r Turn`);
-      } else {
-        turn.append(`${player}'s Turn`);
-      }
+      changePlayerTurn(player2, tile, "redtile");
     } else if (row >= 1 && player == player2) {
-      tile.classList.add("yellowtile");
-      player = player1;
-      turn[0].innerHTML = "";
-      if (player == "You") {
-        turn.append(`${player}r Turn`);
-      } else {
-        turn.append(`${player}'s Turn`);
-      }
+      changePlayerTurn(player1, tile, "yellowtile");
     } else {
       alert("The column is full. You cannot add more tiles.");
     }
+
+    // Check if move causes win or draw
     checkWinDraw();
+  }
+}
+
+// Change Player Turn
+function changePlayerTurn(next_player, tile, colour) {
+  tile.classList.add(colour);
+  player = next_player;
+  const turn = $("#turn");
+  turn[0].innerHTML = "";
+  if (player == "You") {
+    turn.append(`${player}r Turn`);
+  } else {
+    turn.append(`${player}'s Turn`);
   }
 }
 
@@ -225,8 +224,11 @@ function updateScore(winner) {
 }
 
 // Undo last move
-window.undo = undo;
-function undo(e) {}
+window.undoMove = undoMove;
+function undoMove() {
+  console.log(moves.slice(-1)[0]);
+  //
+}
 
 // Back to Main Menu
 window.mainMenu = mainMenu;
