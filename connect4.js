@@ -72,7 +72,7 @@ window.playTile = playTile;
 
 function playTile(e) {
   if (gameEnd) {
-    alert("The game is over. Please start a new game."); // add alert to show who is the winner
+    alert("The game is over. Please start a new game.");
   } else {
     // Update game board status
     const col = parseInt(e.slice(1));
@@ -88,7 +88,11 @@ function playTile(e) {
     } else if (row >= 1 && player == player2) {
       changePlayerTurn(player1, tile, "yellowtile");
     } else {
-      alert("The column is full. You cannot add more tiles.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "The column is full. You cannot add more tiles...",
+      });
     }
 
     // Check if move causes win or draw
@@ -203,7 +207,11 @@ function checkWinDraw() {
     }
     if (tile_counter == boardCols * boardRows) {
       gameEnd = true;
-      alert("Draw Game! Please start a new game.");
+      Swal.fire({
+        icon: "question",
+        title: "Seriously?!",
+        text: "Draw Game! Please start a new game.",
+      });
       newGame();
     }
   }, 200);
@@ -216,7 +224,25 @@ function updateScore(winner) {
   } else {
     player2_score++;
   }
-  alert(`${winner} win!`);
+  if (winner == "AI") {
+    Swal.fire({
+      title: "Aww... So Close!",
+      text: `${winner} win!`,
+      imageUrl: "./Try_harder.jpg",
+      imageWidth: 200,
+      imageHeight: 200,
+      imageAlt: "Custom image",
+    });
+  } else {
+    Swal.fire({
+      title: "Congratulations!",
+      text: `${winner} win!`,
+      imageUrl: "./Congrats.jpg",
+      imageWidth: 200,
+      imageHeight: 200,
+      imageAlt: "Custom image",
+    });
+  }
   $("#P1_score")[0].innerHTML = player1_score;
   $("#P2_score")[0].innerHTML = player2_score;
   gameEnd = true;
@@ -228,7 +254,11 @@ window.undoMove = undoMove;
 function undoMove() {
   const lastMove = moves.slice(-1)[0];
   if (lastMove == undefined) {
-    alert("No moves to undo. Please make a move."); // add alert to show who is the winner
+    Swal.fire({
+      icon: "warning",
+      title: "Hey...",
+      text: "No moves to undo. Please make a move.",
+    });
   } else {
     // Get column and row of last move
     const lastMoveCol = lastMove[0];
