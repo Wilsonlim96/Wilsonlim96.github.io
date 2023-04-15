@@ -226,8 +226,39 @@ function updateScore(winner) {
 // Undo last move
 window.undoMove = undoMove;
 function undoMove() {
-  console.log(moves.slice(-1)[0]);
-  //
+  const lastMove = moves.slice(-1)[0];
+  if (lastMove == undefined) {
+    alert("No moves to undo. Please make a move."); // add alert to show who is the winner
+  } else {
+    // Get column and row of last move
+    const lastMoveCol = lastMove[0];
+    const lastMoveRow = lastMove[1];
+
+    // Undo move from game board
+    game[lastMoveCol - 1][lastMoveRow - 1] = " ";
+    moves.pop();
+    const tile = $(`#c${lastMoveCol}r${lastMoveRow}`)[0];
+    rowTracker[lastMoveCol - 1]++;
+
+    // Undo player's turn
+    if (player == player1) {
+      undoPlayerTurn(player2, tile, "yellowtile");
+    } else {
+      undoPlayerTurn(player1, tile, "redtile");
+    }
+  }
+}
+
+function undoPlayerTurn(prev_player, tile, colour) {
+  tile.classList.remove(colour);
+  player = prev_player;
+  const turn = $("#turn");
+  turn[0].innerHTML = "";
+  if (player == "You") {
+    turn.append(`${player}r Turn`);
+  } else {
+    turn.append(`${player}'s Turn`);
+  }
 }
 
 // Back to Main Menu
