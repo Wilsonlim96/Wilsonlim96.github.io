@@ -87,6 +87,10 @@ h2 {
   margin-top: 23%;
 }
 
+a {
+  font-size: 1.4em;
+}
+
 #player1-button {
   margin-top: 20%;
   background-color: red;

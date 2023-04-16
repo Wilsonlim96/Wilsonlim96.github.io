@@ -3,7 +3,12 @@ const computer = "Computer AI";
 const you = "You";
 
 function singlePlayer() {
-  window.location.href = "./single-player.html";
+  Swal.fire({
+    icon: "warning",
+    title: "BEWARE!",
+    text: "OUR AI WILL TRASH AND WRECK YOU!",
+    footer: '<a href="./single-player.html">BRING IT ON!</a>',
+  });
 }
 
 function SetPlayer1() {
