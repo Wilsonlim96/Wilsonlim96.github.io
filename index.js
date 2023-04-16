@@ -1,4 +1,6 @@
 // Setting Single Player Mode
+const computer = "Computer AI";
+const you = "You";
 
 function singlePlayer() {
   window.location.href = "./single-player.html";
@@ -6,14 +8,14 @@ function singlePlayer() {
 
 function SetPlayer1() {
   window.location.href = "./connect4-gameplay.html";
-  localStorage.setItem("player1-name", "You");
-  localStorage.setItem("player2-name", "AI");
+  localStorage.setItem("player1-name", you);
+  localStorage.setItem("player2-name", computer);
 }
 
 function SetPlayer2() {
   window.location.href = "./connect4-gameplay.html";
-  localStorage.setItem("player1-name", "AI");
-  localStorage.setItem("player2-name", "You");
+  localStorage.setItem("player1-name", computer);
+  localStorage.setItem("player2-name", you);
 }
 
 function mainMenu() {

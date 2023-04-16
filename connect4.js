@@ -1,4 +1,5 @@
 import scoreboard from "./scoreboard.js";
+import AI_Move from "./AI.js";
 
 // Setting up the Game
 
@@ -7,16 +8,18 @@ let player2 = localStorage.getItem("player2-name"); // take input from form //
 let player1_score = 0;
 let player2_score = 0;
 let starting_player = player1;
-
 let gameEnd = false;
 
 const boardRows = 7;
 const boardCols = 7;
+const computer = "Computer AI";
+const you = "You";
 var game;
 var moves;
 var winner;
 var player;
 var rowTracker;
+var boardState;
 
 // Setting up Scoreboard
 const root = $("#score")[0];
@@ -59,12 +62,18 @@ function newGame() {
     game.push(col);
   }
   player = starting_player;
-  if (player == "You") {
+  if (player == you) {
     turn.append(`${player}r Turn`);
   } else {
     turn.append(`${player}'s Turn`);
   }
   rowTracker = [7, 7, 7, 7, 7, 7, 7];
+
+  // Getting BoardState
+  boardState = getBoardState(game, player);
+  if (player == computer) {
+    AI_Play(boardState);
+  }
 }
 
 // Playing a Tile
@@ -88,6 +97,7 @@ function playTile(e) {
     } else if (row >= 1 && player == player2) {
       changePlayerTurn(player1, tile, "yellowtile");
     } else {
+      //Alert effects
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -95,9 +105,22 @@ function playTile(e) {
       });
     }
 
+    // Getting BoardState
+    boardState = getBoardState(game, player);
+    if (player == computer) {
+      AI_Play(boardState);
+    }
+
     // Check if move causes win or draw
     checkWinDraw();
   }
+}
+
+async function AI_Play(boardState) {
+  const response = await AI_Move(boardState);
+  const AImoveCol = parseInt(response) + 1;
+  const AImove = $(`#c${AImoveCol}`);
+  AImove.click();
 }
 
 // Change Player Turn
@@ -106,7 +129,7 @@ function changePlayerTurn(next_player, tile, colour) {
   player = next_player;
   const turn = $("#turn");
   turn[0].innerHTML = "";
-  if (player == "You") {
+  if (player == you) {
     turn.append(`${player}r Turn`);
   } else {
     turn.append(`${player}'s Turn`);
@@ -207,6 +230,7 @@ function checkWinDraw() {
     }
     if (tile_counter == boardCols * boardRows) {
       gameEnd = true;
+      // Alert effects
       Swal.fire({
         icon: "question",
         title: "Seriously?!",
@@ -224,7 +248,9 @@ function updateScore(winner) {
   } else {
     player2_score++;
   }
-  if (winner == "AI") {
+
+  // Alert effects
+  if (winner == computer) {
     Swal.fire({
       title: "Aww... So Close!",
       text: `${winner} win!`,
@@ -254,6 +280,7 @@ window.undoMove = undoMove;
 function undoMove() {
   const lastMove = moves.slice(-1)[0];
   if (lastMove == undefined) {
+    // Alert effects
     Swal.fire({
       icon: "warning",
       title: "Hey...",
@@ -276,6 +303,11 @@ function undoMove() {
     } else {
       undoPlayerTurn(player1, tile, "redtile");
     }
+
+    // Undo Move one more time, if it's AI turn
+    if (player == computer) {
+      undoMove();
+    }
   }
 }
 
@@ -284,7 +316,7 @@ function undoPlayerTurn(prev_player, tile, colour) {
   player = prev_player;
   const turn = $("#turn");
   turn[0].innerHTML = "";
-  if (player == "You") {
+  if (player == you) {
     turn.append(`${player}r Turn`);
   } else {
     turn.append(`${player}'s Turn`);
@@ -296,4 +328,28 @@ window.mainMenu = mainMenu;
 
 function mainMenu() {
   window.location.href = "./index.html";
+}
+
+// Getting board state for AI Move
+// Input format: '0000000000000000020000001200000210000021001012100&player=2'
+function getBoardState(game, player) {
+  let boardState = "";
+  for (let r = 1; r <= boardRows; r++) {
+    for (let c = 1; c <= boardCols; c++) {
+      const tile = game[c - 1][r - 1];
+      if (tile == " ") {
+        boardState += "0";
+      } else if (tile == player1) {
+        boardState += "1";
+      } else {
+        boardState += "2";
+      }
+    }
+  }
+  let currentPlayer = 2;
+  if (player == starting_player) {
+    currentPlayer = 1;
+  }
+  // console.log(`${boardState}&player=${currentPlayer}`);
+  return `${boardState}&player=${currentPlayer}`;
 }
