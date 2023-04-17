@@ -67,6 +67,14 @@ h2 {
   background-color: yellow;
 }
 
+.yellowturn {
+  color: #f2c200;
+}
+
+.redturn {
+  color: red;
+}
+
 #action {
   width: 450px;
   display: flex;

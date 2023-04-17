@@ -7,6 +7,8 @@ let player1 = localStorage.getItem("player1-name"); // take input from form //
 let player2 = localStorage.getItem("player2-name"); // take input from form //
 let player1_score = 0;
 let player2_score = 0;
+let player1colour = "red";
+let player2colour = "yellow";
 let starting_player = player1;
 let gameEnd = false;
 
@@ -62,11 +64,15 @@ function newGame() {
     game.push(col);
   }
   player = starting_player;
+
+  // Update Turn
+  updateTurnColour(turn);
   if (player == you) {
     turn.append(`${player}r Turn`);
   } else {
     turn.append(`${player}'s Turn`);
   }
+
   rowTracker = [7, 7, 7, 7, 7, 7, 7];
 
   // Getting BoardState
@@ -105,6 +111,10 @@ function playTile(e) {
       });
     }
 
+    // Updating Turn Colour
+    const turn = $("#turn");
+    updateTurnColour(turn);
+
     // Getting BoardState
     boardState = getBoardState(game, player);
     if (player == computer) {
@@ -124,6 +134,7 @@ async function AI_Play(boardState) {
 }
 
 // Change Player Turn
+// Need to add colouring to turn and change colour when changing turn
 function changePlayerTurn(next_player, tile, colour) {
   tile.classList.add(colour);
   player = next_player;
@@ -133,6 +144,16 @@ function changePlayerTurn(next_player, tile, colour) {
     turn.append(`${player}r Turn`);
   } else {
     turn.append(`${player}'s Turn`);
+  }
+}
+
+function updateTurnColour(turn) {
+  if (player == player1) {
+    turn[0].classList.remove(`${player2colour}turn`);
+    turn[0].classList.add(`${player1colour}turn`);
+  } else {
+    turn[0].classList.remove(`${player1colour}turn`);
+    turn[0].classList.add(`${player2colour}turn`);
   }
 }
 
@@ -321,6 +342,7 @@ function undoPlayerTurn(prev_player, tile, colour) {
   } else {
     turn.append(`${player}'s Turn`);
   }
+  updateTurnColour(turn);
 }
 
 // Back to Main Menu
