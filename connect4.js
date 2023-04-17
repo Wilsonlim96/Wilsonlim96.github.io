@@ -1,5 +1,5 @@
 import scoreboard from "./scoreboard.js";
-import AI_Move from "./AI.js";
+import AI_Move from "./ai.js";
 
 // Setting up the Game
 
