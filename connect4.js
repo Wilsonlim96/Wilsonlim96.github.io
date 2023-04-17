@@ -275,7 +275,7 @@ function updateScore(winner) {
     Swal.fire({
       title: "Aww... So Close!",
       text: `${winner} win!`,
-      imageUrl: "./Try_harder.jpg",
+      imageUrl: "./try_harder.jpg",
       imageWidth: 200,
       imageHeight: 200,
       imageAlt: "Custom image",
@@ -284,7 +284,7 @@ function updateScore(winner) {
     Swal.fire({
       title: "Congratulations!",
       text: `${winner} win!`,
-      imageUrl: "./Congrats.jpg",
+      imageUrl: "./congrats.jpg",
       imageWidth: 200,
       imageHeight: 200,
       imageAlt: "Custom image",

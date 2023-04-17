@@ -1,7 +1,7 @@
 export default async function AI_Move(board_data) {
   // format = '0000000000000000020000001200000210000021001012100&player=2'
   const AI_API = axios.create({
-    baseURL: "http://kevinalbs.com/connect4/back-end/index.php/",
+    baseURL: "https://kevinalbs.com/connect4/back-end/index.php/",
   });
   try {
     const response = await AI_API.get(
