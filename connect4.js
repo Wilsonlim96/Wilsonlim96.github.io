@@ -264,36 +264,38 @@ function checkWinDraw() {
 
 // Updating Scoreboard
 function updateScore(winner) {
-  if (winner == player1) {
-    player1_score++;
-  } else {
-    player2_score++;
-  }
+  setTimeout(() => {
+    if (winner == player1) {
+      player1_score++;
+    } else {
+      player2_score++;
+    }
 
-  // Alert effects
-  if (winner == computer) {
-    Swal.fire({
-      title: "Aww... So Close!",
-      text: `${winner} win!`,
-      imageUrl: "./try_harder.jpg",
-      imageWidth: 200,
-      imageHeight: 200,
-      imageAlt: "Custom image",
-    });
-  } else {
-    Swal.fire({
-      title: "Congratulations!",
-      text: `${winner} win!`,
-      imageUrl: "./congrats.jpg",
-      imageWidth: 200,
-      imageHeight: 200,
-      imageAlt: "Custom image",
-    });
-  }
-  $("#P1_score")[0].innerHTML = player1_score;
-  $("#P2_score")[0].innerHTML = player2_score;
-  gameEnd = true;
-  newGame();
+    // Alert effects
+    if (winner == computer) {
+      Swal.fire({
+        title: "Aww... So Close!",
+        text: `${winner} win!`,
+        imageUrl: "./try_harder.jpg",
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Custom image",
+      });
+    } else {
+      Swal.fire({
+        title: "Congratulations!",
+        text: `${winner} win!`,
+        imageUrl: "./congrats.jpg",
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Custom image",
+      });
+    }
+    $("#P1_score")[0].innerHTML = player1_score;
+    $("#P2_score")[0].innerHTML = player2_score;
+    gameEnd = true;
+    newGame();
+  }, 1000);
 }
 
 // Undo last move
