@@ -37,9 +37,19 @@ function closeForm() {
   multiplayerForm.style.display = "none";
 }
 
-function storeinput() {
+function storeinput(event) {
   const input1 = $("#player1-name").val();
   const input2 = $("#player2-name").val();
-  localStorage.setItem("player1-name", input1);
-  localStorage.setItem("player2-name", input2);
+  if (!(input1 == "") && input1 == input2) {
+    event.preventDefault();
+    Swal.fire({
+      icon: "question",
+      title: "SAME NAME?!",
+      text: "Use different names please! Thank you :)",
+    });
+  } else {
+    localStorage.setItem("player1-name", input1);
+    localStorage.setItem("player2-name", input2);
+    // window.location.href = "./connect4-gameplay.html";
+  }
 }
