@@ -174,6 +174,13 @@ function checkWinDraw() {
             tile_down == tile_down2 &&
             tile_down2 == tile_down3
           ) {
+            // Flash winning tiles
+            let row_start = r;
+            let row_end = r + 4;
+            for (row_start; row_start < row_end; row_start++) {
+              let disc = $(`#c${c}r${row_start}`)[0];
+              flashWinningTile(disc);
+            }
             winner = tile;
             updateScore(winner);
           }
@@ -196,14 +203,14 @@ function checkWinDraw() {
             tile_right == tile_right2 &&
             tile_right2 == tile_right3
           ) {
-            winner = tile;
+            // Flash winning tiles
             let col_start = c;
             let col_end = c + 4;
-
             for (col_start; col_start < col_end; col_start++) {
               let disc = $(`#c${col_start}r${r}`)[0];
               flashWinningTile(disc);
             }
+            winner = tile;
             updateScore(winner);
           }
         }
@@ -223,6 +230,13 @@ function checkWinDraw() {
             tile_diag == tile_diag2 &&
             tile_diag2 == tile_diag3
           ) {
+            // Flash winning tiles
+            let start = c;
+            let end = c + 4;
+            for (start; start < end; start++) {
+              let disc = $(`#c${start}r${start}`)[0];
+              flashWinningTile(disc);
+            }
             winner = tile;
             updateScore(winner);
           }
@@ -242,6 +256,13 @@ function checkWinDraw() {
             tile_diag == tile_diag2 &&
             tile_diag2 == tile_diag3
           ) {
+            // Flash winning tiles
+            let row_start = r;
+            let col_start = c;
+            for (let change = 0; change < 4; change++) {
+              let disc = $(`#c${col_start + change}r${row_start - change}`)[0];
+              flashWinningTile(disc);
+            }
             winner = tile;
             updateScore(winner);
           }
@@ -305,7 +326,7 @@ function updateScore(winner) {
     $("#P2_score")[0].innerHTML = player2_score;
     gameEnd = true;
     newGame();
-  }, 1000);
+  }, 2000);
 }
 
 // Undo last move
