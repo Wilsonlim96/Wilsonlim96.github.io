@@ -9,6 +9,7 @@ let player1_score = 0;
 let player2_score = 0;
 let player1colour = "red";
 let player2colour = "yellow";
+let winnercolour = "win";
 let starting_player = player1;
 let gameEnd = false;
 
@@ -99,9 +100,9 @@ function playTile(e) {
 
     // Changing player's turn
     if (row >= 1 && player == player1) {
-      changePlayerTurn(player2, tile, "redtile");
+      changePlayerTurn(player2, tile, `${player1colour}tile`);
     } else if (row >= 1 && player == player2) {
-      changePlayerTurn(player1, tile, "yellowtile");
+      changePlayerTurn(player1, tile, `${player2colour}tile`);
     } else {
       //Alert effects
       Swal.fire({
@@ -184,7 +185,9 @@ function checkWinDraw() {
     for (let r = 1; r <= boardRows; r++) {
       for (let c = 1; c <= boardCols - 3; c++) {
         let tile = game[c - 1][r - 1];
+
         let tile_right = game[c][r - 1];
+
         let tile_right2 = game[c + 1][r - 1];
         let tile_right3 = game[c + 2][r - 1];
         if (tile != " ") {
@@ -194,6 +197,13 @@ function checkWinDraw() {
             tile_right2 == tile_right3
           ) {
             winner = tile;
+            let col_start = c;
+            let col_end = c + 4;
+
+            for (col_start; col_start < col_end; col_start++) {
+              let disc = $(`#c${col_start}r${r}`)[0];
+              flashWinningTile(disc);
+            }
             updateScore(winner);
           }
         }
@@ -322,9 +332,9 @@ function undoMove() {
 
     // Undo player's turn
     if (player == player1) {
-      undoPlayerTurn(player2, tile, "yellowtile");
+      undoPlayerTurn(player2, tile, `${player2colour}tile`);
     } else {
-      undoPlayerTurn(player1, tile, "redtile");
+      undoPlayerTurn(player1, tile, `${player1colour}tile`);
     }
 
     // Undo Move one more time, if it's AI turn
@@ -332,6 +342,10 @@ function undoMove() {
       undoMove();
     }
   }
+}
+
+function flashWinningTile(tile) {
+  tile.classList.add(`${winnercolour}tile`);
 }
 
 function undoPlayerTurn(prev_player, tile, colour) {
