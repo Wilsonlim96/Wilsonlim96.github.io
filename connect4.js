@@ -131,7 +131,9 @@ async function AI_Play(boardState) {
   const response = await AI_Move(boardState);
   const AImoveCol = parseInt(response) + 1;
   const AImove = $(`#c${AImoveCol}`);
-  AImove.click();
+  setTimeout(() => {
+    AImove.click();
+  }, 500);
 }
 
 // Change Player Turn
@@ -229,10 +231,12 @@ function checkWinDraw() {
             DR_tile_diag2 == DR_tile_diag3
           ) {
             // Flash winning tiles
-            let start = c;
-            let end = c + 4;
-            for (start; start < end; start++) {
-              let DR_disc = $(`#c${start}r${start}`)[0];
+            let row_start = r;
+            let col_start = c;
+            for (let change = 0; change < 4; change++) {
+              let DR_disc = $(
+                `#c${col_start + change}r${row_start + change}`
+              )[0];
               flashWinningTile(DR_disc);
             }
             winner = DR_tile;

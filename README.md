@@ -20,9 +20,17 @@ For single player mode, user will be playing against a AI, of which the algorith
 
 While for the multi-player mode, 2 users will take turns to make their move.
 
+## USER STORIES
+
+As a member, I am able to view my payment history so that I am able t
+
 ## TECHNOLOGIES USED
 
-d
+The main language used is Javascript and HTML. Libraries used include (see URL link under `CREDITS`):
+
+1. Axios - for importing API data
+2. Jquery - for accessing variables in the HTML script
+3. Sweetalert - for creating fanciful alerts for the gamers
 
 ## TESTING
 
@@ -40,7 +48,7 @@ d
 
 1. The hosting platform is Github.io.
 2. The database is hosted using arrays.
-3. The environment variable is AI_API and it is responsible for calling the api to get moves for the A.
+3. The environment variable is AI_API and it is responsible for calling the api to get moves for the AI.
 
 ## LIVE LINK
 
