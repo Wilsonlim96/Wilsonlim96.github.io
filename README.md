@@ -22,7 +22,11 @@ While for the multi-player mode, 2 users will take turns to make their move.
 
 ## USER STORIES
 
-As a member, I am able to view my payment history so that I am able t
+1. As a player, I am able to select multiplayer so that I am able to play with another player.
+2. As a player, I am able to select single player so that I am able to play against the AI.
+3. As a player, I am able to put a disc in any column so that I am able to make a move.
+4. As a player, I am able to undo move so that I redo a wrong move made.
+5. As a player, I am able to go to the main menu so that I am able to restart the game anytime I wish.
 
 ## TECHNOLOGIES USED
 
