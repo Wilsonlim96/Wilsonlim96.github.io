@@ -10,9 +10,19 @@ The Connect-4 game is a great choice for anyone to pit their brains against anot
 
 ## UX/UI
 
-## GAME FEATURES
+The objective of this project is the create an interactive game for users to have fun and/or kill time. Thus, the page layout adopts a simplistic design to ensure easy natigation. Also, given that there will be different type of users (i.e. single player and multi-players), different pages are created to prepare / lead the players to kickstart of the game.
+
+## FEATURES
+
+The game caters for both single and multiple players. When it is a player's turn, he/she will be able to play a disc into one of the seven columns available. The disc will always be played on the lowest row available for that column. Each column will be stored as an array of 7 items representing the 7 rows in each column. The entire game board is another array that holds all the seven column arrays. After each move is made, the item in the respective column array will be updated with the player who made the move and there will be a check to see if any player has won with that move. If a player has won, the scoreboard will update and the player who started second in the current game will now go first in the next game.
+
+For single player mode, user will be playing against a AI, of which the algorithm used to decide the moves made is an API called from Kevinalbs. Player can choose to start first or start second.
+
+While for the multi-player mode, 2 users will take turns to make their move.
 
 ## TECHNOLOGIES USED
+
+d
 
 ## TESTING
 
@@ -28,8 +38,17 @@ The Connect-4 game is a great choice for anyone to pit their brains against anot
 
 ## DEPLOYMENT
 
+1. The hosting platform is Github.io.
+2. The database is hosted using arrays.
+3. The environment variable is AI_API and it is responsible for calling the api to get moves for the A.
+
 ## LIVE LINK
 
 - [Connect-4 Game](https://wilsonlim96.github.io/)
 
 ## CREDITS AND ACKNOWLEDGEMENT
+
+- [API for AI](https://kevinalbs.com/connect4/back-end/index.php/)
+- [Alert effects](https://cdn.jsdelivr.net/npm/sweetalert2@11)
+- [Blinking effects](https://linuxhint.com/how-to-make-blinking-flashing-text-with-css/)
+- [General coding](https://www.w3schools.com/)

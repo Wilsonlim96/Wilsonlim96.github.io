@@ -164,24 +164,24 @@ function checkWinDraw() {
     // Check vertical win
     for (let c = 1; c <= boardCols; c++) {
       for (let r = 1; r <= boardRows - 3; r++) {
-        let tile = game[c - 1][r - 1];
-        let tile_down = game[c - 1][r];
-        let tile_down2 = game[c - 1][r + 1];
-        let tile_down3 = game[c - 1][r + 2];
-        if (tile != " ") {
+        let vert_tile = game[c - 1][r - 1];
+        let vert_tile_down = game[c - 1][r];
+        let vert_tile_down2 = game[c - 1][r + 1];
+        let vert_tile_down3 = game[c - 1][r + 2];
+        if (vert_tile != " ") {
           if (
-            tile == tile_down &&
-            tile_down == tile_down2 &&
-            tile_down2 == tile_down3
+            vert_tile == vert_tile_down &&
+            vert_tile_down == vert_tile_down2 &&
+            vert_tile_down2 == vert_tile_down3
           ) {
             // Flash winning tiles
             let row_start = r;
             let row_end = r + 4;
             for (row_start; row_start < row_end; row_start++) {
-              let disc = $(`#c${c}r${row_start}`)[0];
-              flashWinningTile(disc);
+              let vert_disc = $(`#c${c}r${row_start}`)[0];
+              flashWinningTile(vert_disc);
             }
-            winner = tile;
+            winner = vert_tile;
             updateScore(winner);
           }
         }
@@ -191,26 +191,24 @@ function checkWinDraw() {
     // Check horizontal win
     for (let r = 1; r <= boardRows; r++) {
       for (let c = 1; c <= boardCols - 3; c++) {
-        let tile = game[c - 1][r - 1];
-
-        let tile_right = game[c][r - 1];
-
-        let tile_right2 = game[c + 1][r - 1];
-        let tile_right3 = game[c + 2][r - 1];
-        if (tile != " ") {
+        let hori_tile = game[c - 1][r - 1];
+        let hori_tile_right = game[c][r - 1];
+        let hori_tile_right2 = game[c + 1][r - 1];
+        let hori_tile_right3 = game[c + 2][r - 1];
+        if (hori_tile != " ") {
           if (
-            tile == tile_right &&
-            tile_right == tile_right2 &&
-            tile_right2 == tile_right3
+            hori_tile == hori_tile_right &&
+            hori_tile_right == hori_tile_right2 &&
+            hori_tile_right2 == hori_tile_right3
           ) {
             // Flash winning tiles
             let col_start = c;
             let col_end = c + 4;
             for (col_start; col_start < col_end; col_start++) {
-              let disc = $(`#c${col_start}r${r}`)[0];
-              flashWinningTile(disc);
+              let hori_disc = $(`#c${col_start}r${r}`)[0];
+              flashWinningTile(hori_disc);
             }
-            winner = tile;
+            winner = hori_tile;
             updateScore(winner);
           }
         }
@@ -220,24 +218,24 @@ function checkWinDraw() {
     // Check diagonal win
     for (let r = 1; r <= boardRows - 3; r++) {
       for (let c = 1; c <= boardCols - 3; c++) {
-        let tile = game[c - 1][r - 1];
-        let tile_diag = game[c][r];
-        let tile_diag2 = game[c + 1][r + 1];
-        let tile_diag3 = game[c + 2][r + 2];
-        if (tile != " ") {
+        let DR_tile = game[c - 1][r - 1];
+        let DR_tile_diag = game[c][r];
+        let DR_tile_diag2 = game[c + 1][r + 1];
+        let DR_tile_diag3 = game[c + 2][r + 2];
+        if (DR_tile != " ") {
           if (
-            tile == tile_diag &&
-            tile_diag == tile_diag2 &&
-            tile_diag2 == tile_diag3
+            DR_tile == DR_tile_diag &&
+            DR_tile_diag == DR_tile_diag2 &&
+            DR_tile_diag2 == DR_tile_diag3
           ) {
             // Flash winning tiles
             let start = c;
             let end = c + 4;
             for (start; start < end; start++) {
-              let disc = $(`#c${start}r${start}`)[0];
-              flashWinningTile(disc);
+              let DR_disc = $(`#c${start}r${start}`)[0];
+              flashWinningTile(DR_disc);
             }
-            winner = tile;
+            winner = DR_tile;
             updateScore(winner);
           }
         }
@@ -246,24 +244,26 @@ function checkWinDraw() {
 
     for (let r = 4; r <= boardRows; r++) {
       for (let c = 1; c <= boardCols - 3; c++) {
-        let tile = game[c - 1][r - 1];
-        let tile_diag = game[c][r - 2];
-        let tile_diag2 = game[c + 1][r - 3];
-        let tile_diag3 = game[c + 2][r - 4];
-        if (tile != " ") {
+        let DL_tile = game[c - 1][r - 1];
+        let DL_tile_diag = game[c][r - 2];
+        let DL_tile_diag2 = game[c + 1][r - 3];
+        let DL_tile_diag3 = game[c + 2][r - 4];
+        if (DL_tile != " ") {
           if (
-            tile == tile_diag &&
-            tile_diag == tile_diag2 &&
-            tile_diag2 == tile_diag3
+            DL_tile == DL_tile_diag &&
+            DL_tile_diag == DL_tile_diag2 &&
+            DL_tile_diag2 == DL_tile_diag3
           ) {
             // Flash winning tiles
             let row_start = r;
             let col_start = c;
             for (let change = 0; change < 4; change++) {
-              let disc = $(`#c${col_start + change}r${row_start - change}`)[0];
-              flashWinningTile(disc);
+              let DL_disc = $(
+                `#c${col_start + change}r${row_start - change}`
+              )[0];
+              flashWinningTile(DL_disc);
             }
-            winner = tile;
+            winner = DL_tile;
             updateScore(winner);
           }
         }
@@ -274,8 +274,8 @@ function checkWinDraw() {
     let tile_counter = 0;
     for (let r = 1; r <= boardRows; r++) {
       for (let c = 1; c <= boardCols; c++) {
-        let tile = game[c - 1][r - 1];
-        if (tile != " ") {
+        let draw_tile = game[c - 1][r - 1];
+        if (draw_tile != " ") {
           tile_counter++;
         }
       }
