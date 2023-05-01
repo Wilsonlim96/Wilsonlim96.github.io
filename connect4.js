@@ -133,7 +133,7 @@ async function AI_Play(boardState) {
   const AImove = $(`#c${AImoveCol}`);
   setTimeout(() => {
     AImove.click();
-  }, 500);
+  }, 1000);
 }
 
 // Change Player Turn
@@ -330,7 +330,7 @@ function updateScore(winner) {
     $("#P2_score")[0].innerHTML = player2_score;
     gameEnd = true;
     newGame();
-  }, 2000);
+  }, 1000);
 }
 
 // Undo last move
